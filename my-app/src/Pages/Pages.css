@@ -1,0 +1,24 @@
+.sectionWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  font-size: 2rem;
+  margin-top: 50px;
+}
+.imgWrapper {
+  width: 100%;
+}
+.textWrapper {
+  max-width: 40%;
+}
+@media screen and (max-width: 1068px) {
+  .sectionWrapper {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sectionWrapper {
+    font-size: 1rem;
+  }
+}

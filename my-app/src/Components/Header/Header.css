@@ -1,0 +1,24 @@
+.headerWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 10px;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: blue;
+  font-size: 20px;
+}
+.headerButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+.switcherWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+}
