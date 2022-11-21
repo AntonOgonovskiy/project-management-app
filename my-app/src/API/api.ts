@@ -10,12 +10,16 @@ const axiosClient = axios.create({
 });
 
 export const signUp = async (data: user) => {
-  const response = axiosClient.post("/auth/signup", JSON.stringify(data));
+  const response = await axiosClient
+    .post("/auth/signup", JSON.stringify(data))
+    .then((resp) => resp.data);
   console.log(response);
   return response;
 };
 export const signIn = async (data: user) => {
-  const response = axiosClient.post("/auth/signin", JSON.stringify(data));
+  const response = await axiosClient
+    .post("/auth/signin", JSON.stringify(data))
+    .then((resp) => resp.data);
   console.log(response);
   return response;
 };
