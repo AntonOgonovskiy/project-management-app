@@ -15,14 +15,18 @@ const Header = () => {
         </Link>
       </div>
       <div className="headerButtonWrapper">
-        <Button variant="contained" style={{ marginRight: "10px" }}>
-          <LoginIcon style={{ marginRight: "3px" }} />
-          Sign in
-        </Button>
-        <Button variant="contained">
-          <HowToRegIcon style={{ marginRight: "3px" }} />
-          Sign up
-        </Button>
+        <Link to="/sign_in" className="homeLink">
+          <Button variant="contained" style={{ marginRight: "10px" }}>
+            <LoginIcon style={{ marginRight: "3px" }} />
+            Sign in
+          </Button>
+        </Link>
+        <Link to="/sign_up" className="homeLink">
+          <Button variant="contained">
+            <HowToRegIcon style={{ marginRight: "3px" }} />
+            Sign up
+          </Button>
+        </Link>
         <div className="switcherWrapper">
           <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>EN</p>
           <ControledSwitch />

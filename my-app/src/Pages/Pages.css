@@ -6,12 +6,44 @@
   font-size: 2rem;
   margin-top: 50px;
 }
+
 .imgWrapper {
   width: 100%;
 }
+
 .textWrapper {
   max-width: 40%;
 }
+
+.registrationWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 40px;
+  border: 0.1px solid #1342fe;
+  border-radius: 5px;
+  box-shadow: 0 0 0.2rem #1342fe, 0 0 0.2rem #1342fe, 0 0 2rem #1342fe,
+    0 0 0.8rem #1342fe;
+}
+
+.registrationBox {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.signLink {
+  text-decoration: none;
+  color: blue;
+}
+
+.formField {
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 1068px) {
   .sectionWrapper {
     flex-direction: column;

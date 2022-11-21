@@ -1,10 +1,20 @@
 import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./Pages.css";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div className="registrationBox">
       <form className="registrationWrapper" action="registration">
+        <TextField
+          style={{ marginBottom: "10px" }}
+          required
+          autoComplete="off"
+          id="outlined-required"
+          placeholder="Name"
+          label="Name"
+          defaultValue=" "
+        />
         <TextField
           autoComplete="off"
           style={{ marginBottom: "10px" }}
@@ -25,9 +35,9 @@ const SignIn = () => {
       </form>
       <div>
         <p>
-          Don't have an account?{" "}
-          <Link className="signLink" to="/sign_up">
-            Sign up
+          Already have an account?{" "}
+          <Link className="signLink" to="/sign_in">
+            Sign in
           </Link>
         </p>
       </div>
@@ -35,4 +45,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
