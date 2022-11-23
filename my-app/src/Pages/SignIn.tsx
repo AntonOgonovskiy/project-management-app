@@ -1,9 +1,10 @@
 import { Button, TextField } from "@mui/material";
+import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../API/api";
-import { Login, user } from "../types";
+import { decode, Login, user } from "../types";
 
 const SignIn = () => {
   const login = useSelector((state: Login) => state.login.login);
@@ -41,9 +42,11 @@ const SignIn = () => {
       const resp = await signIn(data);
       if (resp) {
         dispatch({ type: "TOKEN", payload: resp });
+        const id: decode = jwtDecode(resp);
+        localStorage.setItem("id", id.id);
         localStorage.setItem("token", resp);
         localStorage.setItem("login", data.login);
-        navigate("/");
+        navigate("/main");
       } else {
         document.querySelector(".warning")?.classList.remove("unvise");
       }

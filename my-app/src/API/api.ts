@@ -24,3 +24,14 @@ export const signIn = async (data: user) => {
     .then((resp) => resp.data?.token);
   return response;
 };
+
+export const getAllBoards = async () => {
+  const response = await axiosClient
+    .get("/boards", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  console.log(response);
+};

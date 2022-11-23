@@ -1,9 +1,10 @@
 import { Button, TextField } from "@mui/material";
+import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn, signUp } from "../API/api";
-import { user, Login } from "../types";
+import { user, Login, decode } from "../types";
 import "./Pages.css";
 
 const SignUp = () => {
@@ -44,10 +45,15 @@ const SignUp = () => {
     event.preventDefault();
     if (validate()) {
       const data = user as user;
-      const sign = { login: data.login, password: data.password };
+      const signData = { login: data.login, password: data.password };
       await signUp(data);
-      dispatch({ type: "TOKEN", payload: await signIn(sign) });
-      navigate("/");
+      const resp = await signIn(signData);
+      dispatch({ type: "TOKEN", payload: resp });
+      const id: decode = jwtDecode(resp);
+      localStorage.setItem("id", id.id);
+      localStorage.setItem("token", resp);
+      localStorage.setItem("login", data.login);
+      navigate("/main");
     }
   };
 

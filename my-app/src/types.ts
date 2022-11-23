@@ -13,3 +13,9 @@ export interface Token {
     token: string;
   };
 }
+export interface decode {
+  exp: number;
+  iat: number;
+  id: string;
+  login: string;
+}
