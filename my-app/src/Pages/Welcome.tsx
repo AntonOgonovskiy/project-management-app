@@ -1,7 +1,6 @@
-import React from "react";
 import "./Pages.css";
 
-const Main = () => {
+const Welcome = () => {
   return (
     <div>
       <div className="sectionWrapper">
@@ -24,4 +23,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Welcome;

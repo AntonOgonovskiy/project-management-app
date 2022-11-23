@@ -18,7 +18,7 @@
 .registrationWrapper {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
   padding: 40px;
   border: 0.1px solid #1342fe;
   border-radius: 5px;
@@ -43,7 +43,13 @@
 .formField {
   margin-bottom: 10px;
 }
-
+.warning {
+  margin: 20px;
+  color: red;
+}
+.unvise {
+  display: none;
+}
 @media screen and (max-width: 1068px) {
   .sectionWrapper {
     flex-direction: column;

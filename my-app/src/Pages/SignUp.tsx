@@ -1,20 +1,23 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { signUp } from "../API/api";
-import { user } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn, signUp } from "../API/api";
+import { user, Login } from "../types";
 import "./Pages.css";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const login = useSelector((state: Login) => state.login.login);
   const [name, setName] = useState("");
-  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [valid, setValid] = useState(true);
   const [user, setUser] = useState({
     name: name,
     login: login,
     password: password,
   });
-  const [valid, setValid] = useState(true);
 
   const validate = () => {
     let isValid = true;
@@ -41,10 +44,10 @@ const SignUp = () => {
     event.preventDefault();
     if (validate()) {
       const data = user as user;
+      const sign = { login: data.login, password: data.password };
       await signUp(data);
-      setName("");
-      setLogin("");
-      setPassword("");
+      dispatch({ type: "TOKEN", payload: await signIn(sign) });
+      navigate("/");
     }
   };
 
@@ -66,33 +69,37 @@ const SignUp = () => {
           onChange={(e) => setName(e.target.value)}
           autoComplete="off"
           id="outlined-required"
-          label="Name"
+          label={valid ? "Name" : "At least 2 symbols a-z or A-Z"}
           value={name}
         />
         <TextField
           autoComplete="off"
           style={{ marginBottom: "10px" }}
           required
-          onChange={(e) => setLogin(e.target.value)}
+          onChange={(e) => dispatch({ type: "LOGIN", payload: e.target.value })}
           value={login}
           id="outlined-required"
-          label="Login"
+          label={valid ? "Login" : "At least 2 symbols a-z, A-Z, '.' or '_'"}
         />
         <TextField
           autoComplete="off"
-          style={{ marginBottom: "10px" }}
+          style={
+            valid
+              ? { marginBottom: "10px", color: "black" }
+              : { marginBottom: "10px", color: "red" }
+          }
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           id="outlined-required"
-          label="Password"
+          label={valid ? "Password" : "At least 8 symbols a-z, A-Z or '_'"}
         />
         <Button
           onClick={createUser}
           variant="contained"
           color={valid ? "primary" : "error"}
         >
-          Register
+          Create Account
         </Button>
       </form>
       <div>

@@ -3,3 +3,13 @@ export interface user {
   login: string;
   password: string;
 }
+export interface Login {
+  login: {
+    login: string;
+  };
+}
+export interface Token {
+  token: {
+    token: string;
+  };
+}
