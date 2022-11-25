@@ -1,21 +1,25 @@
-import { Button, TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
+import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { signIn } from "../API/api";
-import { user } from "../types";
+import { useNavigate } from "react-router-dom";
+import { deleteUser, updUser } from "../API/api";
+import { decode, Token, user } from "../types";
 
-const SignIn = () => {
-  const navigate = useNavigate();
+const Profile = () => {
+  const token = useSelector((state: Token) => state.token.token);
+  const decodeToken: decode = jwtDecode(token);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [valid, setValid] = useState(true);
   const [user, setUser] = useState({
+    name: name,
     login: login,
     password: password,
   });
-
   const validate = () => {
     let isValid = true;
 
@@ -34,36 +38,46 @@ const SignIn = () => {
     }
   };
 
-  const logIn = async (event: { preventDefault: () => void }) => {
+  const updateUser = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (validate()) {
       const data = user as user;
-      const resp = await signIn(data);
-      if (resp) {
-        dispatch({ type: "TOKEN", payload: resp });
-        dispatch({ type: "LOGIN", payload: login });
-        localStorage.setItem("token", resp);
-        localStorage.setItem("login", data.login);
-        navigate("/main");
-      } else {
-        document.querySelector(".warning")?.classList.remove("unvise");
-      }
+      dispatch({ type: "LOGIN", payload: login });
+      updUser(decodeToken.id, data);
+      navigate("/main");
     }
+  };
+
+  const deleteAccount = async () => {
+    deleteUser(decodeToken.id);
+    dispatch({ type: "TOKEN", payload: "" });
+    dispatch({ type: "LOGIN", payload: "" });
+    localStorage.clear();
+    navigate("/");
   };
 
   useEffect(() => {
     setUser({
+      name: name,
       login: login,
       password: password,
     });
     setValid(true);
-    document.querySelector(".warning")?.classList.add("unvise");
-  }, [login, password]);
+  }, [login, name, password]);
 
   return (
     <div className="registrationBox">
       <div className="warning unvise">No such User or incorrect password</div>
       <form className="registrationWrapper" action="registration">
+        <TextField
+          style={{ marginBottom: "10px" }}
+          required
+          onChange={(e) => setName(e.target.value)}
+          autoComplete="off"
+          id="outlined-required"
+          label={valid ? "Name" : "At least 2 symbols a-z or A-Z"}
+          value={name}
+        />
         <TextField
           autoComplete="off"
           style={{ marginBottom: "10px" }}
@@ -85,21 +99,21 @@ const SignIn = () => {
         <Button
           variant="contained"
           color={valid ? "primary" : "error"}
-          onClick={logIn}
+          onClick={updateUser}
         >
-          Log In
+          Update
         </Button>
       </form>
-      <div>
-        <p>
-          Don't have an account?{" "}
-          <Link className="signLink" to="/sign_up">
-            Sign up
-          </Link>
-        </p>
-      </div>
+      <Button
+        variant="contained"
+        color="error"
+        style={{ marginTop: "30px" }}
+        onClick={deleteAccount}
+      >
+        Delete my account
+      </Button>
     </div>
   );
 };
 
-export default SignIn;
+export default Profile;

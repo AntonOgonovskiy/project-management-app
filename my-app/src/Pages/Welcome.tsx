@@ -1,8 +1,6 @@
 import "./Pages.css";
 
 const Welcome = () => {
-  console.log(localStorage.getItem("id"));
-
   return (
     <div>
       <div className="sectionWrapper">

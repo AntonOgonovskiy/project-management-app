@@ -25,6 +25,34 @@ export const signIn = async (data: user) => {
   return response;
 };
 
+export const getUser = async (id: string) => {
+  const response = await axiosClient
+    .get(`/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
+};
+
+export const updUser = async (id: string, data: user) => {
+  await axiosClient
+    .put(`/users/${id}`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+};
+export const deleteUser = async (id: string) => {
+  await axiosClient.delete(`/users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
+
 export const getAllBoards = async () => {
   const response = await axiosClient
     .get("/boards", {
@@ -33,5 +61,5 @@ export const getAllBoards = async () => {
       },
     })
     .catch((e) => e.message);
-  console.log(response);
+  return response.data;
 };
