@@ -19,8 +19,8 @@ export interface decode {
   id: string;
   login: string;
 }
-export interface bio {
-  name: string;
-  id: string;
-  login: string;
+export interface board {
+  title: string;
+  users: string;
+  owner: string;
 }

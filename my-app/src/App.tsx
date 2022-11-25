@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import CreateBoardModal from "./Components/CreateBoardModal/CreateBoardModal";
 import Header from "./Components/Header/Header";
 import Main from "./Pages/Main";
 import Profile from "./Pages/Profile";
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <Header />
+      <CreateBoardModal />
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/sign_up" element={<SignUp />} />

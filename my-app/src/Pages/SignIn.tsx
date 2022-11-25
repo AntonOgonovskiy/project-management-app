@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../API/api";
 import { user } from "../types";

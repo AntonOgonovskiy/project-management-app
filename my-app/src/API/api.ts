@@ -1,5 +1,5 @@
 import axios from "axios";
-import { user } from "../types";
+import { board, user } from "../types";
 
 const axiosClient = axios.create({
   baseURL: "https://back-production-8e4f.up.railway.app",
@@ -53,13 +53,24 @@ export const deleteUser = async (id: string) => {
   });
 };
 
-export const getAllBoards = async () => {
+export const getAllBoards = async (id: string) => {
   const response = await axiosClient
-    .get("/boards", {
+    .get(`/boards/`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
     .catch((e) => e.message);
-  return response.data;
+  console.log(response.data);
+};
+
+export const addBoard = async (data: board) => {
+  const response = await axiosClient
+    .post(`/boards`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
 };

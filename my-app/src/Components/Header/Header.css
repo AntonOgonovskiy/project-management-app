@@ -12,6 +12,7 @@
   color: blue;
   font-size: 20px;
 }
+
 .headerButtonWrapper {
   display: flex;
   flex-direction: row;

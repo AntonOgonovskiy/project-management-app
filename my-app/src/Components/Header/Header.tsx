@@ -6,6 +6,7 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import "./Header.css";
 import { useDispatch } from "react-redux";
+import CreateBoard from "../CreateBoardButton/CreateBoard";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,8 +17,9 @@ const Header = () => {
     dispatch({ type: "LOGIN", payload: "" });
     navigate("/");
   };
+
   return (
-    <div className="headerWrapper">
+    <header className="headerWrapper">
       <div>
         <Link to="/" className="homeLink">
           Home
@@ -25,6 +27,7 @@ const Header = () => {
       </div>
       {localStorage.getItem("token") ? (
         <div className="headerButtonWrapper">
+          <CreateBoard />
           <Link className="homeLink" to="/main">
             <Button style={{ marginRight: "10px" }} variant="contained">
               Main
@@ -60,7 +63,7 @@ const Header = () => {
           </div>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 
