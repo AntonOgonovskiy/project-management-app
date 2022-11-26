@@ -74,3 +74,13 @@ export const addBoard = async (data: board | undefined) => {
     .catch((e) => e.message);
   return response;
 };
+export const removeBoard = async (id: string | undefined) => {
+  const response = await axiosClient
+    .delete(`/boards/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
+};

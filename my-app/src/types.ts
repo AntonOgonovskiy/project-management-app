@@ -21,8 +21,9 @@ export interface decode {
 }
 export interface board {
   title: string;
-  users: string;
+  users: string | Array<string>;
   owner: string | undefined;
+  id?: string;
 }
 export interface boards {
   boards: {

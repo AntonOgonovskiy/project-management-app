@@ -43,13 +43,22 @@
 .formField {
   margin-bottom: 10px;
 }
+
 .warning {
   margin: 20px;
   color: red;
 }
+
 .unvise {
   display: none;
 }
+
+.boards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 1068px) {
   .sectionWrapper {
     flex-direction: column;
