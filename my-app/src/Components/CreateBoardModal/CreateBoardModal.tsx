@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./createBoardModal.css";
 import { addBoard, getAllBoards } from "../../API/api";
-import { GetId } from "../../Utils/getId";
+import { GetId } from "../../Utils/utils";
 import { useDispatch } from "react-redux";
 
 const CreateBoardModal = () => {

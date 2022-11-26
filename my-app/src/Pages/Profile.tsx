@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, updUser } from "../API/api";
 import { user } from "../types";
-import { GetId } from "../Utils/getId";
+import { GetId } from "../Utils/utils";
 
 const Profile = () => {
   const id: string = GetId() as string;

@@ -5,7 +5,7 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import "./Header.css";
 import CreateBoard from "../CreateBoardButton/CreateBoard";
-import { SignOut } from "../../Utils/getId";
+import { SignOut } from "../../Utils/utils";
 
 const Header = () => {
   const logOut = SignOut;
