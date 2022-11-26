@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn, signUp } from "../API/api";
+import { getUserBoards, signIn, signUp } from "../API/api";
 import { user, Login, decode } from "../types";
 import "./Pages.css";
 
@@ -53,6 +53,8 @@ const SignUp = () => {
       localStorage.setItem("id", id.id);
       localStorage.setItem("token", resp);
       localStorage.setItem("login", data.login);
+      const boards = await getUserBoards(id.id);
+      dispatch({ type: "BOARD", payload: boards });
       navigate("/main");
     }
   };

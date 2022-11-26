@@ -53,9 +53,9 @@ export const deleteUser = async (id: string) => {
   });
 };
 
-export const getAllBoards = async (id: string | undefined) => {
+export const getUserBoards = async (id: string | undefined) => {
   const response = await axiosClient
-    .get(`/boards`, {
+    .get(`/boardsSet/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

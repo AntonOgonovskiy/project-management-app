@@ -1,15 +1,28 @@
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ControledSwitch from "./ControledSwitch";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import "./Header.css";
 import CreateBoard from "../CreateBoardButton/CreateBoard";
-import { SignOut } from "../../Utils/utils";
+import { useDispatch } from "react-redux";
+import { getUserBoards } from "../../API/api";
+import { GetId } from "../../Utils/utils";
 
 const Header = () => {
-  const logOut = SignOut;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const logOut = () => {
+    localStorage.clear();
+    dispatch({ type: "TOKEN", payload: "" });
+    dispatch({ type: "LOGIN", payload: "" });
+    navigate("/");
+  };
+  const getBoards = async () => {
+    const boards = await getUserBoards(GetId());
+    dispatch({ type: "BOARD", payload: boards });
+  };
   return (
     <header className="headerWrapper">
       <div>
@@ -21,7 +34,11 @@ const Header = () => {
         <div className="headerButtonWrapper">
           <CreateBoard />
           <Link className="homeLink" to="/main">
-            <Button style={{ marginRight: "10px" }} variant="contained">
+            <Button
+              style={{ marginRight: "10px" }}
+              variant="contained"
+              onClick={getBoards}
+            >
               Main
             </Button>
           </Link>

@@ -2,8 +2,9 @@ import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn } from "../API/api";
+import { getUserBoards, signIn } from "../API/api";
 import { user } from "../types";
+import { GetId } from "../Utils/utils";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ const SignIn = () => {
         dispatch({ type: "LOGIN", payload: login });
         localStorage.setItem("token", resp);
         localStorage.setItem("login", data.login);
+        const boards = await getUserBoards(GetId());
+        dispatch({ type: "BOARD", payload: boards });
         navigate("/main");
       } else {
         document.querySelector(".warning")?.classList.remove("unvise");

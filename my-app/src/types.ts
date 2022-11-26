@@ -30,6 +30,7 @@ export interface boards {
       title: string;
       users: string;
       owner: string;
+      length?: number;
     };
   };
 }
