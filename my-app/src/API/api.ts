@@ -53,18 +53,18 @@ export const deleteUser = async (id: string) => {
   });
 };
 
-export const getAllBoards = async (id: string) => {
+export const getAllBoards = async (id: string | undefined) => {
   const response = await axiosClient
-    .get(`/boards/`, {
+    .get(`/boards`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
     .catch((e) => e.message);
-  console.log(response.data);
+  return response.data;
 };
 
-export const addBoard = async (data: board) => {
+export const addBoard = async (data: board | undefined) => {
   const response = await axiosClient
     .post(`/boards`, JSON.stringify(data), {
       headers: {

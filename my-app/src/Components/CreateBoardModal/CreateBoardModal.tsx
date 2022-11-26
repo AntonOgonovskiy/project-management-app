@@ -2,30 +2,32 @@ import { TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./createBoardModal.css";
-import { addBoard } from "../../API/api";
-import jwtDecode from "jwt-decode";
-import { useSelector } from "react-redux";
-import { decode, Token } from "../../types";
+import { addBoard, getAllBoards } from "../../API/api";
+import { GetId } from "../../Utils/getId";
+import { useDispatch } from "react-redux";
 
 const CreateBoardModal = () => {
   const [title, setTitle] = useState("");
   const [descr, setDescr] = useState("");
-
-  const token = useSelector((store: Token) => store.token.token);
-  const jwt: decode = jwtDecode(token);
-  const id = jwt.id;
+  const id = GetId();
+  const dispatch = useDispatch();
 
   const closeModal = () => {
     const modal = document.querySelector(".modalWrapper");
     modal?.classList.add("unvise");
+    setDescr("");
+    setTitle("");
   };
-  const createBoard = () => {
+
+  const createBoard = async () => {
     const data = {
       title: title,
       users: descr,
       owner: id,
     };
-    addBoard(data);
+    await addBoard(data);
+    const boards = await getAllBoards(GetId());
+    dispatch({ type: "BOARD", payload: boards });
     closeModal();
   };
 

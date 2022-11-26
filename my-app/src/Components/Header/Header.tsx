@@ -1,22 +1,14 @@
-import React from "react";
 import { Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ControledSwitch from "./ControledSwitch";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import "./Header.css";
-import { useDispatch } from "react-redux";
 import CreateBoard from "../CreateBoardButton/CreateBoard";
+import { SignOut } from "../../Utils/getId";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const signOut = () => {
-    localStorage.clear();
-    dispatch({ type: "TOKEN", payload: "" });
-    dispatch({ type: "LOGIN", payload: "" });
-    navigate("/");
-  };
+  const logOut = SignOut;
 
   return (
     <header className="headerWrapper">
@@ -38,7 +30,7 @@ const Header = () => {
               Edit profile
             </Button>
           </Link>
-          <Button variant="contained" onClick={signOut}>
+          <Button variant="contained" onClick={logOut}>
             Log out
           </Button>
         </div>

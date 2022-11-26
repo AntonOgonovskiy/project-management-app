@@ -22,5 +22,14 @@ export interface decode {
 export interface board {
   title: string;
   users: string;
-  owner: string;
+  owner: string | undefined;
+}
+export interface boards {
+  boards: {
+    boards: {
+      title: string;
+      users: string;
+      owner: string;
+    };
+  };
 }

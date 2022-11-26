@@ -1,14 +1,13 @@
 import { TextField, Button } from "@mui/material";
-import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, updUser } from "../API/api";
-import { decode, Token, user } from "../types";
+import { user } from "../types";
+import { GetId } from "../Utils/getId";
 
 const Profile = () => {
-  const token = useSelector((state: Token) => state.token.token);
-  const decodeToken: decode = jwtDecode(token);
+  const id: string = GetId() as string;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -43,13 +42,13 @@ const Profile = () => {
     if (validate()) {
       const data = user as user;
       dispatch({ type: "LOGIN", payload: login });
-      updUser(decodeToken.id, data);
+      updUser(id, data);
       navigate("/main");
     }
   };
 
   const deleteAccount = async () => {
-    deleteUser(decodeToken.id);
+    deleteUser(id);
     dispatch({ type: "TOKEN", payload: "" });
     dispatch({ type: "LOGIN", payload: "" });
     localStorage.clear();
