@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getUserBoards } from "../API/api";
 import Board from "../Components/Board/Board";
 import { GetId } from "../Utils/utils";
@@ -7,13 +8,23 @@ import { GetId } from "../Utils/utils";
 const Main = () => {
   const boards = useSelector((state) => state.boards.boards);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoad, setLoad] = useState(false);
 
   const request = async () => {
     setLoad(true);
     const boards = await getUserBoards(GetId());
-    dispatch({ type: "BOARD", payload: boards });
-    setLoad(false);
+    if (boards) {
+      console.log("try");
+      dispatch({ type: "BOARD", payload: boards });
+      setLoad(false);
+    } else {
+      console.log("catch");
+      localStorage.clear();
+      dispatch({ type: "TOKEN", payload: "" });
+      dispatch({ type: "LOGIN", payload: "" });
+      navigate("/");
+    }
   };
 
   useEffect(() => {
