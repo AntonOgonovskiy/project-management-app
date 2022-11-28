@@ -84,3 +84,13 @@ export const removeBoard = async (id: string | undefined) => {
     .catch((e) => e.message);
   return response;
 };
+export const getBoard = async (id: string | undefined) => {
+  const response = await axiosClient
+    .get(`/boards/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response.data;
+};

@@ -18,6 +18,15 @@ export interface Token {
     token: string;
   };
 }
+export interface BoardData {
+  boardData: {
+    data: {
+      title: string;
+      owner: string;
+      users: Array<string>;
+    };
+  };
+}
 export interface decode {
   exp: number;
   iat: number;

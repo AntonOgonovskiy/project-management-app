@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import CreateBoardModal from "./Components/CreateBoardModal/CreateBoardModal";
 import Header from "./Components/Header/Header";
+import BoardPage from "./Pages/BoardPage";
 import Main from "./Pages/Main";
 import Profile from "./Pages/Profile";
 import SignIn from "./Pages/SignIn";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/sign_in" element={<SignIn />} />
         <Route path="/main" element={<Main />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/board" element={<BoardPage />} />
       </Routes>
     </>
   );
