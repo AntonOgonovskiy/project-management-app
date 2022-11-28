@@ -8,6 +8,11 @@ export interface Login {
     login: string;
   };
 }
+export interface Loading {
+  loading: {
+    value: boolean;
+  };
+}
 export interface Token {
   token: {
     token: string;

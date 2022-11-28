@@ -1,22 +1,20 @@
-import React from "react";
 import { board } from "../../types";
 import "./Board.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useDispatch } from "react-redux";
-import { getUserBoards, removeBoard } from "../../API/api";
-import { GetId } from "../../Utils/utils";
+import { removeBoard } from "../../API/api";
 
 const Board = (data: board) => {
   const dispatch = useDispatch();
 
-  const deleteBoard = async () => {
+  const deleteBoard = async (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    dispatch({ type: "ONLOAD", payload: true });
     await removeBoard(data.owner);
-    const boards = await getUserBoards(GetId());
-    dispatch({ type: "BOARD", payload: boards });
   };
 
   return (
-    <div className="boardWrapper">
+    <div className="boardWrapper" onClick={() => console.log(data.owner)}>
       <div className="boardHeader">
         <p className="boardTitle">{data.title}</p>
         <p>{data.users}</p>
