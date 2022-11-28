@@ -46,16 +46,20 @@ const SignUp = () => {
     if (validate()) {
       const data = user as user;
       const signData = { login: data.login, password: data.password };
-      await signUp(data);
-      const resp = await signIn(signData);
-      dispatch({ type: "TOKEN", payload: resp });
-      const id: decode = jwtDecode(resp);
-      localStorage.setItem("id", id.id);
-      localStorage.setItem("token", resp);
-      localStorage.setItem("login", data.login);
-      const boards = await getUserBoards(id.id);
-      dispatch({ type: "BOARD", payload: boards });
-      navigate("/main");
+      const registration = await signUp(data);
+      if (registration !== "Request failed with status code 409") {
+        const resp = await signIn(signData);
+        dispatch({ type: "TOKEN", payload: resp });
+        const id: decode = jwtDecode(resp);
+        localStorage.setItem("id", id.id);
+        localStorage.setItem("token", resp);
+        localStorage.setItem("login", data.login);
+        const boards = await getUserBoards(id.id);
+        dispatch({ type: "BOARD", payload: boards });
+        navigate("/main");
+      } else {
+        alert("Login already exist");
+      }
     }
   };
 
