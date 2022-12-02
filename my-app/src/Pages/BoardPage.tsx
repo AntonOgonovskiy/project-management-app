@@ -4,9 +4,11 @@ import { BoardData } from "../types";
 import ReplyIcon from "@mui/icons-material/Reply";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BoardPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [boardData, setData] = useState({});
   const data = useSelector((state: BoardData) => state.boardData.data);
   const id: string = data.owner
@@ -27,10 +29,19 @@ const BoardPage = () => {
   return (
     <div className="boardPageWrapper">
       <div className="boardHeader">
-        <Button variant="contained" startIcon={<ReplyIcon />}>
-          Back
-        </Button>
-        <span>{}</span>
+        <div className="headerTitle">
+          <Button
+            variant="contained"
+            startIcon={<ReplyIcon />}
+            onClick={() => {
+              navigate("/main");
+            }}
+          >
+            Back
+          </Button>
+          <span className="boardTitle">{data.title}</span>
+        </div>
+        <p className="boardDescription">{data.users[0]}</p>
       </div>
       <div className="boardColumns"></div>
     </div>

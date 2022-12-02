@@ -56,8 +56,31 @@
 
 .boards {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
+}
+
+.boardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5px;
+}
+.headerTitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.boardTitle {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.boardDescription {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 @media screen and (max-width: 1068px) {
