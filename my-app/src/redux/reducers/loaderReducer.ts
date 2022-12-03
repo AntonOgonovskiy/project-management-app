@@ -1,5 +1,5 @@
 const defaultValue = {
-  value: false,
+  value: true,
 };
 
 export const loaderReducer = (
@@ -7,9 +7,6 @@ export const loaderReducer = (
   action: { type: string; payload: string }
 ) => {
   switch (action.type) {
-    case "ONLOAD": {
-      return { ...state, value: action.payload };
-    }
     case "LOADED": {
       return { ...state, value: action.payload };
     }

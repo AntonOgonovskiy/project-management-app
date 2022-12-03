@@ -1,7 +1,10 @@
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 const CreateBoard = () => {
+  const dispatch = useDispatch();
   const openModal = () => {
+    dispatch({ type: "PROPS", payload: "board" });
     const modal = document.querySelector(".modalWrapper");
     modal?.classList.remove("unvise");
   };

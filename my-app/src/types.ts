@@ -19,6 +19,8 @@ export interface Token {
   };
 }
 export interface BoardData {
+  title?: string;
+  users?: any;
   boardData: {
     data: {
       title: string;
@@ -47,5 +49,10 @@ export interface boards {
       owner: string;
       length?: number;
     };
+  };
+}
+export interface modalProps {
+  modalProps: {
+    props: string;
   };
 }

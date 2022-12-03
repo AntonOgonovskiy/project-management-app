@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getUserBoards } from "../API/api";
 import Board from "../Components/Board/Board";
 import { GetId } from "../Utils/utils";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Main = () => {
   const boards = useSelector((state) => state.boards.boards);
@@ -12,10 +13,11 @@ const Main = () => {
   const isLoad = useSelector((state) => state.loading.value);
 
   const request = async () => {
-    dispatch({ type: "ONLOAD", payload: true });
+    dispatch({ type: "LOADED", payload: true });
     const boards = await getUserBoards(GetId());
     if (boards) {
       dispatch({ type: "BOARD", payload: boards });
+      dispatch({ type: "LOADED", payload: false });
     } else {
       localStorage.clear();
       dispatch({ type: "TOKEN", payload: "" });
@@ -26,14 +28,13 @@ const Main = () => {
 
   useEffect(() => {
     request();
-    dispatch({ type: "LOADED", payload: false });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoad]);
+  }, []);
 
   return (
     <div className="boards">
-      {isLoad ? (
-        <p>LOADING....</p>
+      {isLoad === true ? (
+        <CircularProgress style={{ margin: "0 auto", marginTop: "50px" }} />
       ) : (
         boards.map((board) => (
           <Board

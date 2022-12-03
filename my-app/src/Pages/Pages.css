@@ -66,7 +66,7 @@
   align-items: flex-start;
   margin-top: 5px;
 }
-.headerTitle {
+.headerButtons {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
@@ -74,7 +74,6 @@
 
 .boardTitle {
   margin: 0;
-  margin-left: 20px;
   font-size: 1.5rem;
   font-weight: bold;
 }

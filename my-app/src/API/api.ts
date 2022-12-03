@@ -74,6 +74,7 @@ export const addBoard = async (data: board | undefined) => {
     .catch((e) => e.message);
   return response;
 };
+
 export const removeBoard = async (id: string | undefined) => {
   const response = await axiosClient
     .delete(`/boards/${id}`, {
@@ -84,6 +85,7 @@ export const removeBoard = async (id: string | undefined) => {
     .catch((e) => e.message);
   return response;
 };
+
 export const getBoard = async (id: string | undefined) => {
   const response = await axiosClient
     .get(`/boards/${id}`, {
@@ -93,4 +95,26 @@ export const getBoard = async (id: string | undefined) => {
     })
     .catch((e) => e.message);
   return response.data;
+};
+
+export const addColumn = async (id: string, data: { title: string }) => {
+  const response = await axiosClient
+    .post(`/boards/${id}/columns`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
+};
+
+export const getColumns = async (id: string) => {
+  const response = await axiosClient
+    .get(`/boards/${id}/columns`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
 };

@@ -20,6 +20,10 @@ const SignUp = () => {
     password: password,
   });
 
+  if (localStorage.getItem("token")) {
+    navigate("/main");
+  }
+
   const validate = () => {
     let isValid = true;
 
