@@ -9,5 +9,8 @@
   font-size: 1.5rem;
   justify-content: space-between;
   background-color: #1976d23f;
-  cursor: pointer;
+}
+.columnHeader {
+  display: flex;
+  justify-content: space-between;
 }

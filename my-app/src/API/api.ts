@@ -118,3 +118,14 @@ export const getColumns = async (id: string) => {
     .catch((e) => e.message);
   return response.data;
 };
+
+export const removeColumn = async (boardId: string, colId: string) => {
+  const response = await axiosClient
+    .delete(`/boards/${boardId}/columns/${colId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response.data;
+};
