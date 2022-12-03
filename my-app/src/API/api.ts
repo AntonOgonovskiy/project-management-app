@@ -116,5 +116,5 @@ export const getColumns = async (id: string) => {
       },
     })
     .catch((e) => e.message);
-  return response;
+  return response.data;
 };

@@ -18,6 +18,16 @@ export interface Token {
     token: string;
   };
 }
+export interface columnList {
+  columnList: {
+    columns: {
+      boardId: string;
+      order: number;
+      title: string;
+      _id: string;
+    };
+  };
+}
 export interface BoardData {
   title?: string;
   users?: any;
@@ -55,4 +65,10 @@ export interface modalProps {
   modalProps: {
     props: string;
   };
+}
+export interface column {
+  boardId: string;
+  order: number;
+  title: string;
+  _id: string;
 }

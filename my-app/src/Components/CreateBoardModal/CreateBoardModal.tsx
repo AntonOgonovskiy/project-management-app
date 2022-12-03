@@ -37,13 +37,13 @@ const CreateBoardModal = () => {
 
   const createTask = async () => {
     const id: string = localStorage.getItem("boardData") as string;
+    const orderValue = await getColumns(id).then((resp) => resp.length);
     const data = {
       title: title,
-      order: 0,
+      order: orderValue + 1,
     };
-    await addColumn(id, data);
-    const columns = await getColumns(id);
-    console.log(columns);
+    const cols = await addColumn(id, data);
+    dispatch({ type: "COLUMN", payload: cols });
     dispatch({ type: "PROPS", payload: "" });
     closeModal();
   };
