@@ -13,6 +13,7 @@
 
 .textWrapper {
   max-width: 40%;
+  text-align: justify;
 }
 
 .registrationWrapper {
