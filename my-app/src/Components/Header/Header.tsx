@@ -25,7 +25,7 @@ const Header = () => {
   };
   return (
     <header className="headerWrapper">
-      <div>
+      <div className="homeLink">
         <Link to="/" className="homeLink">
           Home
         </Link>

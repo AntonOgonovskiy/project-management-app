@@ -4,3 +4,6 @@ body {
   margin: 0 auto;
   font-size: 10px;
 }
+.mainContainer {
+  min-height: calc(100vh - 151.3px);
+}

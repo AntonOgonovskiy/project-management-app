@@ -10,7 +10,11 @@
 .homeLink {
   text-decoration: none;
   color: blue;
+  transition: linear 0.3s;
   font-size: 20px;
+}
+.homeLink:hover {
+  transform: scale(1.2);
 }
 
 .headerButtonWrapper {
