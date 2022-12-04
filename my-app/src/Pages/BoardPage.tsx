@@ -75,15 +75,17 @@ const BoardPage = () => {
         )}
       </div>
       <div className="boardColumns">
-        {columns.map((item: column) => (
-          <Column
-            key={item._id}
-            title={item.title}
-            boardId={item.boardId}
-            order={item.order}
-            _id={item._id}
-          />
-        ))}
+        {isLoad === true
+          ? ""
+          : columns.map((item: column) => (
+              <Column
+                key={item._id}
+                title={item.title}
+                boardId={item.boardId}
+                order={item.order}
+                _id={item._id}
+              />
+            ))}
       </div>
     </div>
   );

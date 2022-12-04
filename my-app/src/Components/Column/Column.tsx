@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 
 const Column = (props: column) => {
   const dispatch = useDispatch();
-  console.log(props);
 
   const deleteColumn = async () => {
     dispatch({ type: "LOADED", payload: true });
@@ -18,6 +17,7 @@ const Column = (props: column) => {
     dispatch({ type: "COLUMN", payload: cols });
     dispatch({ type: "LOADED", payload: false });
   };
+
   return (
     <div className="columnWrapper">
       <div className="columnHeader">
