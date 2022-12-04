@@ -5,5 +5,6 @@ body {
   font-size: 10px;
 }
 .mainContainer {
+  position: relative;
   min-height: calc(100vh - 151.3px);
 }

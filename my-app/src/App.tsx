@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import ConfirmationModal from "./Components/ConfirmationModal/ConfirmationModal";
 import CreateBoardModal from "./Components/CreateBoardModal/CreateBoardModal";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <div className="mainContainer">
         <CreateBoardModal />
+        <ConfirmationModal />
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/sign_up" element={<SignUp />} />

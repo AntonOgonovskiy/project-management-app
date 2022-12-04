@@ -13,9 +13,6 @@
   transition: linear 0.3s;
   font-size: 20px;
 }
-.homeLink:hover {
-  transform: scale(1.2);
-}
 
 .headerButtonWrapper {
   display: flex;

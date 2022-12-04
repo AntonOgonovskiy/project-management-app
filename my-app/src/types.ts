@@ -12,6 +12,9 @@ export interface Loading {
   loading: {
     value: boolean;
   };
+  visibility: {
+    value: boolean;
+  };
 }
 export interface Token {
   token: {
@@ -71,4 +74,12 @@ export interface column {
   order: number;
   title: string;
   _id: string;
+}
+export interface confirm {
+  columnRemove: {
+    value: {
+      board: string;
+      column: string;
+    };
+  };
 }

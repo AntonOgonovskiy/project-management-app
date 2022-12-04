@@ -105,7 +105,7 @@ export const addColumn = async (id: string, data: { title: string }) => {
       },
     })
     .catch((e) => e.message);
-  return response;
+  return response.data;
 };
 
 export const getColumns = async (id: string) => {

@@ -25,11 +25,9 @@ const Header = () => {
   };
   return (
     <header className="headerWrapper">
-      <div className="homeLink">
-        <Link to="/" className="homeLink">
-          Home
-        </Link>
-      </div>
+      <Link className="homeLink" to="/">
+        <Button variant="contained">Home</Button>
+      </Link>
       {localStorage.getItem("token") ? (
         <div className="headerButtonWrapper">
           <CreateBoard />
