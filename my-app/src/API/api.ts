@@ -129,3 +129,18 @@ export const removeColumn = async (boardId: string, colId: string) => {
     .catch((e) => e.message);
   return response.data;
 };
+
+export const updColumn = async (
+  boardId: string,
+  colId: string,
+  data: { title: string }
+) => {
+  const response = await axiosClient
+    .put(`/boards/${boardId}/columns/${colId}`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response.data;
+};

@@ -13,4 +13,10 @@
 .columnHeader {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
+}
+.columnNewTitle {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
 }
