@@ -1,23 +1,37 @@
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import "./ConfirmationModal.css";
-import { confirm, Loading } from "../../types";
-import { getColumns, removeColumn } from "../../API/api";
+import { remove, Loading } from "../../types";
+import {
+  getColumns,
+  getUserBoards,
+  removeBoard,
+  removeColumn,
+} from "../../API/api";
+import { GetId } from "../../Utils/utils";
 
 const ConfirmationModal = () => {
   const dispatch = useDispatch();
-  const column = useSelector((state: confirm) => state.columnRemove.value);
+  const removeData = useSelector((state: remove) => state.columnRemove.value);
   const isLoad = useSelector((state: Loading) => state.visibility.value);
 
   const yes = async () => {
-    await removeColumn(column.board, column.column);
-    const cols = await getColumns(column.board);
-    dispatch({ type: "COLUMN", payload: cols });
+    if (removeData.type === "column") {
+      await removeColumn(removeData.board, removeData.column);
+      const cols = await getColumns(removeData.board);
+      dispatch({ type: "COLUMN", payload: cols });
+    } else if (removeData.type === "board") {
+      await removeBoard(removeData.board);
+      const boards = await getUserBoards(GetId());
+      dispatch({ type: "BOARD", payload: boards });
+    }
     dispatch({ type: "VISIBLE", payload: false });
+    dispatch({ type: "DELETE", payload: "" });
   };
 
   const no = async () => {
     dispatch({ type: "VISIBLE", payload: false });
+    dispatch({ type: "DELETE", payload: "" });
   };
 
   return (

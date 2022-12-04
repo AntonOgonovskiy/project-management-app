@@ -75,9 +75,10 @@ export interface column {
   title: string;
   _id: string;
 }
-export interface confirm {
+export interface remove {
   columnRemove: {
     value: {
+      type: string;
       board: string;
       column: string;
     };

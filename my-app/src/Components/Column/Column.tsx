@@ -11,13 +11,8 @@ const Column = (props: column) => {
 
   const deleteColumn = async () => {
     dispatch({ type: "VISIBLE", payload: true });
-    const body = { board: props.boardId, column: props._id };
+    const body = { type: "column", board: props.boardId, column: props._id };
     dispatch({ type: "DELETE", payload: body });
-
-    // await removeColumn(props.boardId, props._id);
-    // const cols = await getColumns(props.boardId);
-    // dispatch({ type: "COLUMN", payload: cols });
-    // dispatch({ type: "LOADED", payload: false });
   };
 
   return (

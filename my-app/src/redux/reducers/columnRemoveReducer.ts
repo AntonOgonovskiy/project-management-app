@@ -4,7 +4,7 @@ const defaultValue = {
 
 export const columnsRemover = (
   state = defaultValue,
-  action: { type: string; payload: string }
+  action: { type: string; payload: object }
 ) => {
   switch (action.type) {
     case "DELETE": {
