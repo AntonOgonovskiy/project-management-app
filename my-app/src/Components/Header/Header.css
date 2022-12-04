@@ -1,10 +1,17 @@
 .headerWrapper {
+  position: sticky;
+  top: 0px;
+  z-index: 100;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: lightgrey;
+  transition: background-color 0.3s;
   padding: 10px;
+}
+.headerSticky {
+  background-color: rgb(91, 91, 91);
 }
 
 .homeLink {
