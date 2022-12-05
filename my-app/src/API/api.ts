@@ -13,15 +13,14 @@ export const signUp = async (data: user) => {
   const response = await axiosClient
     .post("/auth/signup", JSON.stringify(data))
     .then((resp) => resp.data)
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response;
 };
 
 export const signIn = async (data: user) => {
   const response = await axiosClient
     .post("/auth/signin", JSON.stringify(data))
-    .catch((e) => e.message)
-    .then((resp) => resp.data?.token);
+    .catch((e) => e.response.data.statusCode);
   return response;
 };
 
@@ -37,13 +36,14 @@ export const getUser = async (id: string) => {
 };
 
 export const updUser = async (id: string, data: user) => {
-  await axiosClient
+  const resp = await axiosClient
     .put(`/users/${id}`, JSON.stringify(data), {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
+  return resp;
 };
 export const deleteUser = async (id: string) => {
   await axiosClient.delete(`/users/${id}`, {
@@ -61,7 +61,7 @@ export const getUserBoards = async (id: string | undefined) => {
       },
     })
     .catch((e) => e.message);
-  return response.data;
+  return response;
 };
 
 export const addBoard = async (data: board | undefined) => {
@@ -71,7 +71,7 @@ export const addBoard = async (data: board | undefined) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response;
 };
 
@@ -82,7 +82,7 @@ export const removeBoard = async (id: string | undefined) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response;
 };
 
@@ -93,8 +93,8 @@ export const getBoard = async (id: string | undefined) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
-  return response.data;
+    .catch((e) => e.response.data.statusCode);
+  return response;
 };
 
 export const addColumn = async (id: string, data: { title: string }) => {
@@ -104,7 +104,7 @@ export const addColumn = async (id: string, data: { title: string }) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response.data;
 };
 
@@ -115,7 +115,7 @@ export const getColumns = async (id: string) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response.data;
 };
 
@@ -126,7 +126,7 @@ export const removeColumn = async (boardId: string, colId: string) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response.data;
 };
 
@@ -141,6 +141,6 @@ export const updColumn = async (
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .catch((e) => e.message);
+    .catch((e) => e.response.data.statusCode);
   return response.data;
 };

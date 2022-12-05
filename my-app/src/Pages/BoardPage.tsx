@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import Column from "../Components/Column/Column";
+import { toastError } from "../Toasts/toasts";
 
 const BoardPage = () => {
   const dispatch = useDispatch();
@@ -23,10 +24,18 @@ const BoardPage = () => {
   const getData = async (id: string) => {
     dispatch({ type: "LOADED", payload: true });
     const resp = await getBoard(id);
-    const columns = await getColumns(id);
-    setColumns(columns);
-    setData(resp);
-    dispatch({ type: "LOADED", payload: false });
+    if (resp.status === 200) {
+      const columns = await getColumns(id);
+      setColumns(columns);
+      setData(resp.data);
+      dispatch({ type: "LOADED", payload: false });
+    } else if (resp === 404) {
+      toastError("Board Not Found");
+      localStorage.clear();
+      dispatch({ type: "TOKEN", payload: "" });
+      dispatch({ type: "LOGIN", payload: "" });
+      navigate("/");
+    }
   };
 
   useEffect(() => {

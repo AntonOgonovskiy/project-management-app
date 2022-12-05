@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ConfirmationModal from "./Components/ConfirmationModal/ConfirmationModal";
 import CreateBoardModal from "./Components/CreateBoardModal/CreateBoardModal";
 import Footer from "./Components/Footer/Footer";
@@ -16,6 +18,7 @@ function App() {
     <>
       <Header />
       <div className="mainContainer">
+        <ToastContainer draggable={false} transition={Zoom} newestOnTop />
         <CreateBoardModal />
         <ConfirmationModal />
         <Routes>

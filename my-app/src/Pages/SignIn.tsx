@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserBoards, signIn } from "../API/api";
+import { toastError, toastSuccess } from "../Toasts/toasts";
 import { user } from "../types";
 import { GetId } from "../Utils/utils";
 
@@ -43,16 +44,19 @@ const SignIn = () => {
     if (validate()) {
       const data = user as user;
       const resp = await signIn(data);
-      if (resp) {
-        dispatch({ type: "TOKEN", payload: resp });
+      if (resp !== 401) {
+        toastSuccess("HELLO!");
+        dispatch({ type: "TOKEN", payload: resp.data.token });
         dispatch({ type: "LOGIN", payload: login });
-        localStorage.setItem("token", resp);
+        localStorage.setItem("token", resp.data.token);
         localStorage.setItem("login", data.login);
         const boards = await getUserBoards(GetId());
-        dispatch({ type: "BOARD", payload: boards });
+        dispatch({ type: "BOARD", payload: boards.data });
         navigate("/main");
-      } else {
-        document.querySelector(".warning")?.classList.remove("unvise");
+      } else if (resp === 401) {
+        toastError("User not found or query error");
+      } else if (resp === 400) {
+        toastError("Bad Request");
       }
     }
   };
@@ -63,12 +67,10 @@ const SignIn = () => {
       password: password,
     });
     setValid(true);
-    document.querySelector(".warning")?.classList.add("unvise");
   }, [login, password]);
 
   return (
     <div className="registrationBox">
-      <div className="warning unvise">No such User or incorrect password</div>
       <form className="registrationWrapper" action="registration">
         <TextField
           autoComplete="off"

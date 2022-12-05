@@ -8,7 +8,6 @@ export const GetId = () => {
     const id = jwt.id;
     return id;
   } catch (error) {
-    console.error();
     localStorage.clear();
   }
 };

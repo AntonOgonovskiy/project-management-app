@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserBoards, signIn, signUp } from "../API/api";
+import { toastSuccess, toastWarning } from "../Toasts/toasts";
 import { user, Login, decode } from "../types";
 import "./Pages.css";
 
@@ -51,18 +52,22 @@ const SignUp = () => {
       const data = user as user;
       const signData = { login: data.login, password: data.password };
       const registration = await signUp(data);
-      if (registration !== "Request failed with status code 409") {
+      console.log(registration);
+      if (registration !== 409) {
+        toastSuccess("New user is created");
         const resp = await signIn(signData);
-        dispatch({ type: "TOKEN", payload: resp });
-        const id: decode = jwtDecode(resp);
+        dispatch({ type: "TOKEN", payload: resp.data.token });
+        const id: decode = jwtDecode(resp.data.token);
         localStorage.setItem("id", id.id);
-        localStorage.setItem("token", resp);
+        localStorage.setItem("token", resp.data.token);
         localStorage.setItem("login", data.login);
         const boards = await getUserBoards(id.id);
-        dispatch({ type: "BOARD", payload: boards });
+        dispatch({ type: "BOARD", payload: boards.data });
         navigate("/main");
-      } else {
-        alert("Login already exist");
+      } else if (registration === 409) {
+        toastWarning("Login already exist");
+      } else if (registration === 400) {
+        toastWarning("Bad Request");
       }
     }
   };

@@ -33,7 +33,7 @@ const Header = () => {
 
   const getBoards = async () => {
     const boards = await getUserBoards(GetId());
-    dispatch({ type: "BOARD", payload: boards });
+    dispatch({ type: "BOARD", payload: boards.data });
   };
 
   useEffect(() => {

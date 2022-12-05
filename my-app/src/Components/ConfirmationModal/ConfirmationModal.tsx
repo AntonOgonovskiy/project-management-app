@@ -9,6 +9,7 @@ import {
   removeColumn,
 } from "../../API/api";
 import { GetId } from "../../Utils/utils";
+import { toastInfo } from "../../Toasts/toasts";
 
 const ConfirmationModal = () => {
   const dispatch = useDispatch();
@@ -20,10 +21,12 @@ const ConfirmationModal = () => {
       await removeColumn(removeData.board, removeData.column);
       const cols = await getColumns(removeData.board);
       dispatch({ type: "COLUMN", payload: cols });
+      toastInfo("Column Deleted");
     } else if (removeData.type === "board") {
       await removeBoard(removeData.board);
       const boards = await getUserBoards(GetId());
-      dispatch({ type: "BOARD", payload: boards });
+      dispatch({ type: "BOARD", payload: boards.data });
+      toastInfo("Board Deleted");
     }
     dispatch({ type: "VISIBLE", payload: false });
     dispatch({ type: "DELETE", payload: "" });

@@ -6,6 +6,7 @@ import { addBoard, addColumn, getColumns, getUserBoards } from "../../API/api";
 import { GetId } from "../../Utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { modalProps } from "../../types";
+import { toastError, toastInfo } from "../../Toasts/toasts";
 
 const CreateBoardModal = () => {
   const [title, setTitle] = useState("");
@@ -30,9 +31,14 @@ const CreateBoardModal = () => {
     };
     await addBoard(data);
     const boards = await getUserBoards(GetId());
-    dispatch({ type: "BOARD", payload: boards });
-    dispatch({ type: "PROPS", payload: "" });
-    closeModal();
+    if (boards !== 400) {
+      dispatch({ type: "BOARD", payload: boards.data });
+      dispatch({ type: "PROPS", payload: "" });
+      closeModal();
+      toastInfo("Board Created");
+    } else {
+      toastError("Bad Request");
+    }
   };
 
   const createTask = async () => {
@@ -46,6 +52,7 @@ const CreateBoardModal = () => {
     dispatch({ type: "COLUMN", payload: cols });
     dispatch({ type: "PROPS", payload: "" });
     closeModal();
+    toastInfo("Task Created");
   };
 
   return (

@@ -5,6 +5,7 @@ import { getUserBoards } from "../API/api";
 import Board from "../Components/Board/Board";
 import { GetId } from "../Utils/utils";
 import CircularProgress from "@mui/material/CircularProgress";
+import { toastError } from "../Toasts/toasts";
 
 const Main = () => {
   const boards = useSelector((state) => state.boards.boards);
@@ -15,10 +16,11 @@ const Main = () => {
   const request = async () => {
     dispatch({ type: "LOADED", payload: true });
     const boards = await getUserBoards(GetId());
-    if (boards) {
-      dispatch({ type: "BOARD", payload: boards });
+    if (boards.data) {
+      dispatch({ type: "BOARD", payload: boards.data });
       dispatch({ type: "LOADED", payload: false });
     } else {
+      toastError("Invalid Token");
       localStorage.clear();
       dispatch({ type: "TOKEN", payload: "" });
       dispatch({ type: "LOGIN", payload: "" });

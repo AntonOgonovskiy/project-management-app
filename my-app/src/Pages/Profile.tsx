@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, updUser } from "../API/api";
+import { toastError, toastSuccess } from "../Toasts/toasts";
 import { user } from "../types";
 import { GetId } from "../Utils/utils";
 
@@ -41,9 +42,16 @@ const Profile = () => {
     event.preventDefault();
     if (validate()) {
       const data = user as user;
-      dispatch({ type: "LOGIN", payload: login });
-      updUser(id, data);
-      navigate("/main");
+      const resp = await updUser(id, data);
+      if (resp.status === 200) {
+        toastSuccess("Succsessfully");
+        dispatch({ type: "LOGIN", payload: login });
+        navigate("/main");
+      } else if (resp === 409) {
+        toastError("Login already exist");
+      } else if (resp === 400) {
+        toastError("Bad Request");
+      }
     }
   };
 
@@ -52,6 +60,7 @@ const Profile = () => {
     dispatch({ type: "TOKEN", payload: "" });
     dispatch({ type: "LOGIN", payload: "" });
     localStorage.clear();
+    toastSuccess("User Deleted");
     navigate("/");
   };
 
@@ -66,7 +75,6 @@ const Profile = () => {
 
   return (
     <div className="registrationBox">
-      <div className="warning unvise">No such User or incorrect password</div>
       <form className="registrationWrapper" action="registration">
         <TextField
           style={{ marginBottom: "10px" }}
