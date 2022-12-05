@@ -8,6 +8,7 @@ import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import BoardPage from "./Pages/BoardPage";
 import Main from "./Pages/Main";
+import NotFound from "./Pages/NotFound";
 import Profile from "./Pages/Profile";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/board" element={<BoardPage />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
       <Footer />
