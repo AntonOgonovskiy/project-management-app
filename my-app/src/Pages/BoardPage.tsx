@@ -46,7 +46,7 @@ const BoardPage = () => {
   }, [columnsList]);
 
   const openModal = () => {
-    dispatch({ type: "PROPS", payload: "task" });
+    dispatch({ type: "PROPS", payload: "col" });
     const modal = document.querySelector(".modalWrapper");
     modal?.classList.remove("unvise");
   };

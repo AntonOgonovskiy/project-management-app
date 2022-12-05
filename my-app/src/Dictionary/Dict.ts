@@ -6,6 +6,8 @@ export const dict = {
       no: "No",
       addBoard: "+ Add board",
       createBoard: "Create Board",
+      createTask: "Create Task",
+
       createCol: "Create List",
       main: "Main",
       editProfile: "Edit profile",
@@ -62,6 +64,7 @@ export const dict = {
       no: "Нет",
       addBoard: "+ Добавить доску",
       createBoard: "Создать доску",
+      createTask: "Создать задание",
       createCol: "Создать колонку",
       main: "Главная",
       editProfile: "Редактировать профиль",

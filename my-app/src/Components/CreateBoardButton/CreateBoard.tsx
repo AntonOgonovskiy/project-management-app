@@ -15,7 +15,7 @@ const CreateBoard = () => {
     <Button
       style={{
         marginRight: "10px",
-        maxWidth: "150px",
+        maxWidth: "250px",
         maxHeight: "30px",
         minWidth: "10px",
         minHeight: "30px",

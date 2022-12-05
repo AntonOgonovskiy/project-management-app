@@ -63,7 +63,7 @@ const Header = () => {
       <Link className="homeLink" to="/">
         <Button
           style={{
-            maxWidth: "150px",
+            maxWidth: "250px",
             maxHeight: "30px",
             minWidth: "10px",
             minHeight: "30px",
@@ -83,7 +83,7 @@ const Header = () => {
             <Button
               style={{
                 marginRight: "10px",
-                maxWidth: "150px",
+                maxWidth: "250px",
                 maxHeight: "30px",
                 minWidth: "10px",
                 minHeight: "30px",
@@ -101,7 +101,7 @@ const Header = () => {
             <Button
               style={{
                 marginRight: "10px",
-                maxWidth: "150px",
+                maxWidth: "250px",
                 maxHeight: "30px",
                 minWidth: "10px",
                 minHeight: "30px",
@@ -116,7 +116,7 @@ const Header = () => {
           </Link>
           <Button
             style={{
-              maxWidth: "150px",
+              maxWidth: "250px",
               maxHeight: "30px",
               minWidth: "10px",
               minHeight: "30px",
@@ -141,7 +141,7 @@ const Header = () => {
             <Button
               style={{
                 marginRight: "10px",
-                maxWidth: "150px",
+                maxWidth: "250px",
                 maxHeight: "30px",
                 minWidth: "10px",
                 minHeight: "30px",
@@ -158,7 +158,7 @@ const Header = () => {
           <Link to="/sign_up" className="homeLink">
             <Button
               style={{
-                maxWidth: "150px",
+                maxWidth: "250px",
                 maxHeight: "30px",
                 minWidth: "10px",
                 minHeight: "30px",

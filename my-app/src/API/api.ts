@@ -1,5 +1,5 @@
 import axios from "axios";
-import { board, user } from "../types";
+import { board, task, user } from "../types";
 
 const axiosClient = axios.create({
   baseURL: "https://back-production-8e4f.up.railway.app",
@@ -137,6 +137,28 @@ export const updColumn = async (
 ) => {
   const response = await axiosClient
     .put(`/boards/${boardId}/columns/${colId}`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const addTask = async (boardId: string, colId: string, data: task) => {
+  const response = await axiosClient
+    .post(`/boards/${boardId}/columns/${colId}/tasks`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const getTasks = async (boardId: string, colId: string) => {
+  const response = await axiosClient
+    .get(`/boards/${boardId}/columns/${colId}/tasks`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

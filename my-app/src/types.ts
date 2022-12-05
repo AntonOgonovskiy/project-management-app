@@ -91,3 +91,10 @@ export interface lang {
     value: string;
   };
 }
+export interface task {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  users: never[];
+}
