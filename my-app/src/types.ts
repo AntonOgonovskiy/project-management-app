@@ -76,7 +76,7 @@ export interface column {
   _id: string;
 }
 export interface remove {
-  columnRemove: {
+  dataRemove: {
     value: {
       type: string;
       board: string;

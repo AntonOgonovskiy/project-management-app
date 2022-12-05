@@ -3,17 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ConfirmationModal.css";
 import { remove, Loading } from "../../types";
 import {
+  deleteUser,
   getColumns,
   getUserBoards,
   removeBoard,
   removeColumn,
 } from "../../API/api";
 import { GetId } from "../../Utils/utils";
-import { toastInfo } from "../../Toasts/toasts";
+import { toastInfo, toastSuccess } from "../../Toasts/toasts";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmationModal = () => {
   const dispatch = useDispatch();
-  const removeData = useSelector((state: remove) => state.columnRemove.value);
+  const navigate = useNavigate();
+  const removeData = useSelector((state: remove) => state.dataRemove.value);
   const isLoad = useSelector((state: Loading) => state.visibility.value);
 
   const yes = async () => {
@@ -27,6 +30,13 @@ const ConfirmationModal = () => {
       const boards = await getUserBoards(GetId());
       dispatch({ type: "BOARD", payload: boards.data });
       toastInfo("Board Deleted");
+    } else if (removeData.type === "profile") {
+      deleteUser(removeData.board);
+      dispatch({ type: "TOKEN", payload: "" });
+      dispatch({ type: "LOGIN", payload: "" });
+      localStorage.clear();
+      toastSuccess("User Deleted");
+      navigate("/");
     }
     dispatch({ type: "VISIBLE", payload: false });
     dispatch({ type: "DELETE", payload: "" });

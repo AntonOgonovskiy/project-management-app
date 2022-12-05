@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from "redux";
 import { boardDataReducer } from "./reducers/boardDataReducer";
 import { boardReducer } from "./reducers/boardReducer";
-import { columnsRemover } from "./reducers/columnRemoveReducer";
+import { dataRemover } from "./reducers/dataRemoveReducer";
 import { columnsReducer } from "./reducers/columnsReducer";
 import { loaderReducer } from "./reducers/loaderReducer";
 import { loginReducer } from "./reducers/loginReducer";
@@ -17,7 +17,7 @@ const rootReducers = combineReducers({
   boardData: boardDataReducer,
   modalProps: ModalPropsReducer,
   columnList: columnsReducer,
-  columnRemove: columnsRemover,
+  dataRemove: dataRemover,
   visibility: visReducer,
 });
 

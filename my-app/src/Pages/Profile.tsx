@@ -2,7 +2,7 @@ import { TextField, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteUser, updUser } from "../API/api";
+import { updUser } from "../API/api";
 import { toastError, toastSuccess } from "../Toasts/toasts";
 import { user } from "../types";
 import { GetId } from "../Utils/utils";
@@ -56,12 +56,9 @@ const Profile = () => {
   };
 
   const deleteAccount = async () => {
-    deleteUser(id);
-    dispatch({ type: "TOKEN", payload: "" });
-    dispatch({ type: "LOGIN", payload: "" });
-    localStorage.clear();
-    toastSuccess("User Deleted");
-    navigate("/");
+    const body = { type: "profile", board: id };
+    dispatch({ type: "DELETE", payload: body });
+    dispatch({ type: "VISIBLE", payload: true });
   };
 
   useEffect(() => {

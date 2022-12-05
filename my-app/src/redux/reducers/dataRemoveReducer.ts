@@ -2,7 +2,7 @@ const defaultValue = {
   value: "",
 };
 
-export const columnsRemover = (
+export const dataRemover = (
   state = defaultValue,
   action: { type: string; payload: object }
 ) => {

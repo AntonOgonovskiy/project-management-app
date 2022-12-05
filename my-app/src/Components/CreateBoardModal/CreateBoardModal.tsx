@@ -52,7 +52,7 @@ const CreateBoardModal = () => {
     dispatch({ type: "COLUMN", payload: cols });
     dispatch({ type: "PROPS", payload: "" });
     closeModal();
-    toastInfo("Task Created");
+    toastInfo("Column Created");
   };
 
   return (
