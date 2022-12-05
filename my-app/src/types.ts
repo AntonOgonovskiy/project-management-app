@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface user {
   name?: string;
   login: string;
@@ -32,8 +34,8 @@ export interface columnList {
   };
 }
 export interface BoardData {
+  users: ReactNode;
   title?: string;
-  users?: any;
   boardData: {
     data: {
       title: string;

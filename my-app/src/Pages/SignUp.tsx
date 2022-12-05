@@ -52,7 +52,6 @@ const SignUp = () => {
       const data = user as user;
       const signData = { login: data.login, password: data.password };
       const registration = await signUp(data);
-      console.log(registration);
       if (registration !== 409) {
         toastSuccess("New user is created");
         const resp = await signIn(signData);

@@ -26,7 +26,6 @@ const Column = (props: column) => {
     const resp = await updColumn(data.boardId, data._id, body);
     setData(resp);
     setChange(false);
-    console.log(resp);
   };
 
   return (
