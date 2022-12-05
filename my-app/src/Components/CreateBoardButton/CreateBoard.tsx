@@ -13,11 +13,19 @@ const CreateBoard = () => {
   const lang = useSelector((state: lang) => state.lang.value);
   return (
     <Button
-      style={{ marginRight: "10px" }}
+      style={{
+        marginRight: "10px",
+        maxWidth: "150px",
+        maxHeight: "30px",
+        minWidth: "10px",
+        minHeight: "30px",
+      }}
       variant="contained"
       onClick={openModal}
     >
-      {dict[lang as keyof typeof dict].button.addBoard}
+      <p className="headerButtonName">
+        {dict[lang as keyof typeof dict].button.addBoard}
+      </p>
     </Button>
   );
 };

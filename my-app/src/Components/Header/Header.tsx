@@ -61,8 +61,19 @@ const Header = () => {
       }
     >
       <Link className="homeLink" to="/">
-        <Button variant="contained">
-          {dict[lang as keyof typeof dict].button.home}
+        <Button
+          style={{
+            maxWidth: "150px",
+            maxHeight: "30px",
+            minWidth: "10px",
+            minHeight: "30px",
+            padding: "5px",
+          }}
+          variant="contained"
+        >
+          <p className="headerButtonName">
+            {dict[lang as keyof typeof dict].button.home}
+          </p>
         </Button>
       </Link>
       {localStorage.getItem("token") ? (
@@ -70,45 +81,101 @@ const Header = () => {
           <CreateBoard />
           <Link className="homeLink" to="/main">
             <Button
-              style={{ marginRight: "10px" }}
+              style={{
+                marginRight: "10px",
+                maxWidth: "150px",
+                maxHeight: "30px",
+                minWidth: "10px",
+                minHeight: "30px",
+                padding: "5px",
+              }}
               variant="contained"
               onClick={getBoards}
             >
-              {dict[lang as keyof typeof dict].button.main}
+              <p className="headerButtonName">
+                {dict[lang as keyof typeof dict].button.main}
+              </p>
             </Button>
           </Link>
           <Link className="homeLink" to="/profile">
-            <Button style={{ marginRight: "10px" }} variant="contained">
-              {dict[lang as keyof typeof dict].button.editProfile}
+            <Button
+              style={{
+                marginRight: "10px",
+                maxWidth: "150px",
+                maxHeight: "30px",
+                minWidth: "10px",
+                minHeight: "30px",
+                padding: "5px",
+              }}
+              variant="contained"
+            >
+              <p className="headerButtonName">
+                {dict[lang as keyof typeof dict].button.editProfile}
+              </p>
             </Button>
           </Link>
-          <Button variant="contained" onClick={logOut}>
-            {dict[lang as keyof typeof dict].button.logOut}
+          <Button
+            style={{
+              maxWidth: "150px",
+              maxHeight: "30px",
+              minWidth: "10px",
+              minHeight: "30px",
+              padding: "5px",
+            }}
+            variant="contained"
+            onClick={logOut}
+          >
+            <p className="headerButtonName">
+              {dict[lang as keyof typeof dict].button.logOut}
+            </p>
           </Button>
           <div className="switcherWrapper">
-            <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>EN</p>
+            <p className="headerButtonName">EN</p>
             <ControledSwitch />
-            <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>RU</p>
+            <p className="headerButtonName">RU</p>
           </div>
         </div>
       ) : (
         <div className="headerButtonWrapper">
           <Link to="/sign_in" className="homeLink">
-            <Button variant="contained" style={{ marginRight: "10px" }}>
+            <Button
+              style={{
+                marginRight: "10px",
+                maxWidth: "150px",
+                maxHeight: "30px",
+                minWidth: "10px",
+                minHeight: "30px",
+                padding: "5px",
+              }}
+              variant="contained"
+            >
               <LoginIcon style={{ marginRight: "3px" }} />
-              {dict[lang as keyof typeof dict].button.signIn}
+              <p className="headerButtonName">
+                {dict[lang as keyof typeof dict].button.signIn}
+              </p>
             </Button>
           </Link>
           <Link to="/sign_up" className="homeLink">
-            <Button variant="contained">
+            <Button
+              style={{
+                maxWidth: "150px",
+                maxHeight: "30px",
+                minWidth: "10px",
+                minHeight: "30px",
+                padding: "5px",
+              }}
+              variant="contained"
+            >
               <HowToRegIcon style={{ marginRight: "3px" }} />
-              {dict[lang as keyof typeof dict].button.signUp}
+              <p className="headerButtonName">
+                {dict[lang as keyof typeof dict].button.signUp}
+              </p>
             </Button>
           </Link>
           <div className="switcherWrapper">
-            <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>EN</p>
+            <p className="headerButtonName">EN</p>
             <ControledSwitch />
-            <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>RU</p>
+            <p className="headerButtonName">RU</p>
           </div>
         </div>
       )}
