@@ -6,6 +6,4 @@ body {
 }
 .mainContainer {
   position: relative;
-  min-height: calc(100vh - 159.3px);
-  max-height: calc(100vh - 159.3px);
 }
