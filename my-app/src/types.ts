@@ -83,6 +83,7 @@ export interface remove {
       type: string;
       board: string;
       column: string;
+      task?: string;
     };
   };
 }
@@ -92,8 +93,11 @@ export interface lang {
   };
 }
 export interface task {
+  _id?: string;
   title: string;
   order: number;
+  boardId?: string;
+  columnId?: string;
   description: string;
   userId: string;
   users: never[];

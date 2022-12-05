@@ -48,7 +48,6 @@ const Column = (props: column) => {
     dispatch({ type: "DELETE", payload: body });
   };
 
-  console.log(tasks);
   useEffect(() => {
     getListOfTasks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,12 +78,15 @@ const Column = (props: column) => {
         <div className="taskList">
           {tasks.map((item: task) => (
             <Task
-              key={item.userId}
+              _id={item._id}
+              key={item._id}
               title={item.title}
               order={item.order}
               description={item.description}
               userId={item.userId}
               users={item.users}
+              boardId={item.boardId}
+              columnId={item.columnId}
             />
           ))}
         </div>

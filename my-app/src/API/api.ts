@@ -166,3 +166,18 @@ export const getTasks = async (boardId: string, colId: string) => {
     .catch((e) => e.response.data.statusCode);
   return response.data;
 };
+
+export const removeTasks = async (
+  boardId: string,
+  colId: string,
+  taskId: string
+) => {
+  const response = await axiosClient
+    .delete(`/boards/${boardId}/columns/${colId}/tasks/${taskId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};

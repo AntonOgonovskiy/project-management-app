@@ -8,6 +8,7 @@ import {
   getUserBoards,
   removeBoard,
   removeColumn,
+  removeTasks,
 } from "../../API/api";
 import { GetId } from "../../Utils/utils";
 import { toastInfo, toastSuccess } from "../../Toasts/toasts";
@@ -39,6 +40,13 @@ const ConfirmationModal = () => {
       localStorage.clear();
       toastSuccess(dict[lang as keyof typeof dict].toasts.userDel);
       navigate("/");
+    } else if (removeData.type === "task") {
+      await removeTasks(
+        removeData.board,
+        removeData.column,
+        removeData.task as string
+      );
+      dispatch({ type: "LOADED", payload: false });
     }
     dispatch({ type: "VISIBLE", payload: false });
     dispatch({ type: "DELETE", payload: "" });
@@ -47,6 +55,7 @@ const ConfirmationModal = () => {
   const no = async () => {
     dispatch({ type: "VISIBLE", payload: false });
     dispatch({ type: "DELETE", payload: "" });
+    dispatch({ type: "LOADED", payload: false });
   };
 
   return (
