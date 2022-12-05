@@ -45,14 +45,26 @@ const Column = (props: column) => {
         </div>
       ) : (
         <div className="columnHeader">
-          <p style={{ cursor: "pointer" }} onClick={() => setChange(true)}>
+          <p className="columnTitle" onClick={() => setChange(true)}>
             {data.title}
           </p>
-          <DeleteIcon style={{ cursor: "pointer" }} onClick={deleteColumn} />
+          <DeleteIcon className="columnTitle" onClick={deleteColumn} />
         </div>
       )}
-      <Button variant="outlined" startIcon={<AddIcon />}>
-        {dict[lang as keyof typeof dict].button.addTask}
+      <Button
+        style={{
+          maxWidth: "150px",
+          maxHeight: "30px",
+          minWidth: "10px",
+          minHeight: "30px",
+          padding: "5px",
+        }}
+        variant="outlined"
+        startIcon={<AddIcon />}
+      >
+        <p className="columnTitle">
+          {dict[lang as keyof typeof dict].button.addTask}
+        </p>
       </Button>
     </div>
   );

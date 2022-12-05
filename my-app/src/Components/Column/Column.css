@@ -4,8 +4,9 @@
   padding: 10px;
   border: 1px solid gray;
   border-radius: 10px;
-  min-width: 15%;
+  min-width: 90px;
   margin-bottom: 20px;
+  margin-right: 10px;
   font-size: 1.5rem;
   justify-content: space-between;
   background-color: #1976d23f;
@@ -19,4 +20,13 @@
   margin-bottom: 5px;
   display: flex;
   align-items: center;
+}
+.columnTitle {
+  cursor: pointer;
+  font-size: 1rem;
+}
+@media screen and (max-width: 1068px) {
+  .columnTitle {
+    font-size: 0.6rem;
+  }
 }

@@ -78,7 +78,9 @@
 }
 .boardColumns {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  overflow-y: hidden;
   justify-content: space-between;
 }
 
