@@ -4,16 +4,18 @@ import "./Column.css";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { updColumn } from "../../API/api";
+import { dict } from "../../Dictionary/Dict";
+import { lang } from "../../types";
 
 const Column = (props: column) => {
   const [data, setData] = useState(props);
   const [isChange, setChange] = useState(false);
   const [newTitle, setTitle] = useState(data.title);
-
+  const lang = useSelector((state: lang) => state.lang.value);
   const dispatch = useDispatch();
 
   const deleteColumn = async () => {
@@ -36,7 +38,7 @@ const Column = (props: column) => {
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             value={newTitle}
-            placeholder={"enter new title"}
+            placeholder={dict[lang as keyof typeof dict].label.newTitle}
           />
           {newTitle.length >= 1 && <CheckIcon onClick={updateTitle} />}
           <CloseIcon onClick={() => setChange(false)} />
@@ -50,7 +52,7 @@ const Column = (props: column) => {
         </div>
       )}
       <Button variant="outlined" startIcon={<AddIcon />}>
-        Add task
+        {dict[lang as keyof typeof dict].button.addTask}
       </Button>
     </div>
   );

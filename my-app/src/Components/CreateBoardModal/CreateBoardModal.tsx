@@ -5,8 +5,9 @@ import "./createBoardModal.css";
 import { addBoard, addColumn, getColumns, getUserBoards } from "../../API/api";
 import { GetId } from "../../Utils/utils";
 import { useDispatch, useSelector } from "react-redux";
-import { modalProps } from "../../types";
+import { modalProps, lang } from "../../types";
 import { toastError, toastInfo } from "../../Toasts/toasts";
+import { dict } from "../../Dictionary/Dict";
 
 const CreateBoardModal = () => {
   const [title, setTitle] = useState("");
@@ -14,6 +15,7 @@ const CreateBoardModal = () => {
   const id = GetId();
   const dispatch = useDispatch();
   const props = useSelector((state: modalProps) => state.modalProps.props);
+  const lang = useSelector((state: lang) => state.lang.value);
 
   const closeModal = () => {
     const modal = document.querySelector(".modalWrapper");
@@ -35,9 +37,9 @@ const CreateBoardModal = () => {
       dispatch({ type: "BOARD", payload: boards.data });
       dispatch({ type: "PROPS", payload: "" });
       closeModal();
-      toastInfo("Board Created");
+      toastInfo(dict[lang as keyof typeof dict].toasts.boardCreate);
     } else {
-      toastError("Bad Request");
+      toastError(dict[lang as keyof typeof dict].toasts.badReques);
     }
   };
 
@@ -52,7 +54,7 @@ const CreateBoardModal = () => {
     dispatch({ type: "COLUMN", payload: cols });
     dispatch({ type: "PROPS", payload: "" });
     closeModal();
-    toastInfo("Column Created");
+    toastInfo(dict[lang as keyof typeof dict].toasts.colCreate);
   };
 
   return (
@@ -66,7 +68,7 @@ const CreateBoardModal = () => {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           id="outlined-required"
-          label="Title"
+          label={dict[lang as keyof typeof dict].label.boardTitle}
         />
         {props === "board" && (
           <TextField
@@ -76,17 +78,17 @@ const CreateBoardModal = () => {
             onChange={(e) => setDescr(e.target.value)}
             required
             id="outlined-required"
-            label="Description"
+            label={dict[lang as keyof typeof dict].label.boardDescr}
           />
         )}
         {props === "board" && (
           <Button variant="contained" color="primary" onClick={createBoard}>
-            Create Board
+            {dict[lang as keyof typeof dict].button.createBoard}
           </Button>
         )}
         {props === "task" && (
           <Button variant="contained" color="primary" onClick={createTask}>
-            Create Task
+            {dict[lang as keyof typeof dict].button.createCol}
           </Button>
         )}
       </form>

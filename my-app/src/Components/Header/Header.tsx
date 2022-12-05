@@ -5,16 +5,19 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import "./Header.css";
 import CreateBoard from "../CreateBoardButton/CreateBoard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserBoards } from "../../API/api";
 import { GetId } from "../../Utils/utils";
 import { useEffect, useRef, useState } from "react";
+import { lang } from "../../types";
+import { dict } from "../../Dictionary/Dict";
 
 const Header = () => {
   const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
   const headerRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const lang = useSelector((state: lang) => state.lang.value);
 
   const handleScroll = (elTopOffset: number, elHeight: number) => {
     if (window.pageYOffset > elTopOffset + elHeight) {
@@ -58,7 +61,9 @@ const Header = () => {
       }
     >
       <Link className="homeLink" to="/">
-        <Button variant="contained">Home</Button>
+        <Button variant="contained">
+          {dict[lang as keyof typeof dict].button.home}
+        </Button>
       </Link>
       {localStorage.getItem("token") ? (
         <div className="headerButtonWrapper">
@@ -69,30 +74,35 @@ const Header = () => {
               variant="contained"
               onClick={getBoards}
             >
-              Main
+              {dict[lang as keyof typeof dict].button.main}
             </Button>
           </Link>
           <Link className="homeLink" to="/profile">
             <Button style={{ marginRight: "10px" }} variant="contained">
-              Edit profile
+              {dict[lang as keyof typeof dict].button.editProfile}
             </Button>
           </Link>
           <Button variant="contained" onClick={logOut}>
-            Log out
+            {dict[lang as keyof typeof dict].button.logOut}
           </Button>
+          <div className="switcherWrapper">
+            <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>EN</p>
+            <ControledSwitch />
+            <p style={{ color: "blue", fontSize: "20px", margin: 0 }}>RU</p>
+          </div>
         </div>
       ) : (
         <div className="headerButtonWrapper">
           <Link to="/sign_in" className="homeLink">
             <Button variant="contained" style={{ marginRight: "10px" }}>
               <LoginIcon style={{ marginRight: "3px" }} />
-              Sign in
+              {dict[lang as keyof typeof dict].button.signIn}
             </Button>
           </Link>
           <Link to="/sign_up" className="homeLink">
             <Button variant="contained">
               <HowToRegIcon style={{ marginRight: "3px" }} />
-              Sign up
+              {dict[lang as keyof typeof dict].button.signUp}
             </Button>
           </Link>
           <div className="switcherWrapper">

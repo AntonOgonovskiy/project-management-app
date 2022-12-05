@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getBoard, getColumns } from "../API/api";
-import { BoardData, column, columnList, Loading } from "../types";
+import { BoardData, column, columnList, Loading, lang } from "../types";
 import ReplyIcon from "@mui/icons-material/Reply";
 import { Button, CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import Column from "../Components/Column/Column";
 import { toastError } from "../Toasts/toasts";
+import { dict } from "../Dictionary/Dict";
 
 const BoardPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const BoardPage = () => {
   const [boardData, setData] = useState({} as BoardData);
   const [columns, setColumns] = useState([]);
   const id: string = localStorage.getItem("boardData") as string;
+  const lang = useSelector((state: lang) => state.lang.value);
 
   const getData = async (id: string) => {
     dispatch({ type: "LOADED", payload: true });
@@ -30,7 +32,7 @@ const BoardPage = () => {
       setData(resp.data);
       dispatch({ type: "LOADED", payload: false });
     } else if (resp === 404) {
-      toastError("Board Not Found");
+      toastError(dict[lang as keyof typeof dict].toasts.noBoard);
       localStorage.clear();
       dispatch({ type: "TOKEN", payload: "" });
       dispatch({ type: "LOGIN", payload: "" });
@@ -60,7 +62,7 @@ const BoardPage = () => {
               navigate("/main");
             }}
           >
-            Back
+            {dict[lang as keyof typeof dict].button.back}
           </Button>
           <Button
             variant="contained"

@@ -8,6 +8,7 @@ import { loginReducer } from "./reducers/loginReducer";
 import { ModalPropsReducer } from "./reducers/modalPropsReducer";
 import { visReducer } from "./reducers/modalVisReducer";
 import { tokenReducer } from "./reducers/tokenReducer";
+import { langReducer } from "./reducers/langReducer";
 
 const rootReducers = combineReducers({
   login: loginReducer,
@@ -19,6 +20,7 @@ const rootReducers = combineReducers({
   columnList: columnsReducer,
   dataRemove: dataRemover,
   visibility: visReducer,
+  lang: langReducer,
 });
 
 export const store = createStore(rootReducers);

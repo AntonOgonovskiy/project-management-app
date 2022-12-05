@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserBoards, signIn, signUp } from "../API/api";
+import { dict } from "../Dictionary/Dict";
 import { toastSuccess, toastWarning } from "../Toasts/toasts";
-import { user, Login, decode } from "../types";
+import { user, Login, decode, lang } from "../types";
 import "./Pages.css";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const login = useSelector((state: Login) => state.login.login);
+  const lang = useSelector((state: lang) => state.lang.value);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [valid, setValid] = useState(true);
@@ -53,7 +55,7 @@ const SignUp = () => {
       const signData = { login: data.login, password: data.password };
       const registration = await signUp(data);
       if (registration !== 409) {
-        toastSuccess("New user is created");
+        toastSuccess(dict[lang as keyof typeof dict].toasts.newUser);
         const resp = await signIn(signData);
         dispatch({ type: "TOKEN", payload: resp.data.token });
         const id: decode = jwtDecode(resp.data.token);
@@ -64,9 +66,9 @@ const SignUp = () => {
         dispatch({ type: "BOARD", payload: boards.data });
         navigate("/main");
       } else if (registration === 409) {
-        toastWarning("Login already exist");
+        toastWarning(dict[lang as keyof typeof dict].toasts.loginExist);
       } else if (registration === 400) {
-        toastWarning("Bad Request");
+        toastWarning(dict[lang as keyof typeof dict].toasts.badReques);
       }
     }
   };
@@ -89,7 +91,11 @@ const SignUp = () => {
           onChange={(e) => setName(e.target.value)}
           autoComplete="off"
           id="outlined-required"
-          label={valid ? "Name" : "At least 2 symbols a-z or A-Z"}
+          label={
+            valid
+              ? dict[lang as keyof typeof dict].label.valName
+              : dict[lang as keyof typeof dict].label.invalName
+          }
           value={name}
         />
         <TextField
@@ -99,7 +105,11 @@ const SignUp = () => {
           onChange={(e) => dispatch({ type: "LOGIN", payload: e.target.value })}
           value={login}
           id="outlined-required"
-          label={valid ? "Login" : "At least 2 symbols a-z, A-Z, '.' or '_'"}
+          label={
+            valid
+              ? dict[lang as keyof typeof dict].label.valLogin
+              : dict[lang as keyof typeof dict].label.invalLogin
+          }
         />
         <TextField
           autoComplete="off"
@@ -112,21 +122,25 @@ const SignUp = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
           id="outlined-required"
-          label={valid ? "Password" : "At least 8 symbols a-z, A-Z or '_'"}
+          label={
+            valid
+              ? dict[lang as keyof typeof dict].label.valPass
+              : dict[lang as keyof typeof dict].label.invalPass
+          }
         />
         <Button
           onClick={createUser}
           variant="contained"
           color={valid ? "primary" : "error"}
         >
-          Create Account
+          {dict[lang as keyof typeof dict].button.createAcc}
         </Button>
       </form>
       <div>
         <p>
-          Already have an account?{" "}
+          {dict[lang as keyof typeof dict].signUpConfirm}{" "}
           <Link className="signLink" to="/sign_in">
-            Sign in
+            {dict[lang as keyof typeof dict].button.signIn}
           </Link>
         </p>
       </div>

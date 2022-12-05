@@ -1,13 +1,16 @@
 import { TextField, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updUser } from "../API/api";
 import { toastError, toastSuccess } from "../Toasts/toasts";
 import { user } from "../types";
 import { GetId } from "../Utils/utils";
+import { lang } from "../types";
+import { dict } from "../Dictionary/Dict";
 
 const Profile = () => {
+  const lang = useSelector((state: lang) => state.lang.value);
   const id: string = GetId() as string;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,6 +23,7 @@ const Profile = () => {
     login: login,
     password: password,
   });
+
   const validate = () => {
     let isValid = true;
 
@@ -44,13 +48,13 @@ const Profile = () => {
       const data = user as user;
       const resp = await updUser(id, data);
       if (resp.status === 200) {
-        toastSuccess("Succsessfully");
+        toastSuccess(dict[lang as keyof typeof dict].toasts.succsses);
         dispatch({ type: "LOGIN", payload: login });
         navigate("/main");
       } else if (resp === 409) {
-        toastError("Login already exist");
+        toastError(dict[lang as keyof typeof dict].toasts.loginExist);
       } else if (resp === 400) {
-        toastError("Bad Request");
+        toastError(dict[lang as keyof typeof dict].toasts.badReques);
       }
     }
   };
@@ -79,7 +83,11 @@ const Profile = () => {
           onChange={(e) => setName(e.target.value)}
           autoComplete="off"
           id="outlined-required"
-          label={valid ? "Name" : "At least 2 symbols a-z or A-Z"}
+          label={
+            valid
+              ? dict[lang as keyof typeof dict].label.valName
+              : dict[lang as keyof typeof dict].label.invalName
+          }
           value={name}
         />
         <TextField
@@ -89,7 +97,11 @@ const Profile = () => {
           onChange={(e) => setLogin(e.target.value)}
           value={login}
           id="outlined-required"
-          label={valid ? "Login" : "At least 2 symbols a-z, A-Z, '.' or '_'"}
+          label={
+            valid
+              ? dict[lang as keyof typeof dict].label.valLogin
+              : dict[lang as keyof typeof dict].label.invalLogin
+          }
         />
         <TextField
           autoComplete="off"
@@ -98,14 +110,18 @@ const Profile = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
           id="outlined-required"
-          label={valid ? "Password" : "At least 8 symbols a-z, A-Z or '_'"}
+          label={
+            valid
+              ? dict[lang as keyof typeof dict].label.valPass
+              : dict[lang as keyof typeof dict].label.invalPass
+          }
         />
         <Button
           variant="contained"
           color={valid ? "primary" : "error"}
           onClick={updateUser}
         >
-          Update
+          {dict[lang as keyof typeof dict].button.updProfile}
         </Button>
       </form>
       <Button
@@ -114,7 +130,7 @@ const Profile = () => {
         style={{ marginTop: "30px" }}
         onClick={deleteAccount}
       >
-        Delete my account
+        {dict[lang as keyof typeof dict].button.delProfile}
       </Button>
     </div>
   );

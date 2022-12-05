@@ -17,6 +17,7 @@ export const dict = {
       delProfile: "Delete my account",
       logIn: "Log In",
       createAcc: "Create Account",
+      home: "Home",
     },
     label: {
       valLogin: "Login",
@@ -25,6 +26,9 @@ export const dict = {
       invalPass: "At least 8 symbols a-z, A-Z or '_'",
       valName: "Name",
       invalName: "At least 2 symbols a-z or A-Z",
+      newTitle: "Enter new title",
+      boardTitle: "Title",
+      boardDescr: "Description",
     },
     toasts: {
       hello: "Hello!",
@@ -43,11 +47,12 @@ export const dict = {
     },
     signInConfirm: "Don't have an account",
     signUpConfirm: "Already have an account?",
+    modalConfirm: "Are you shure?",
     welcomeSect1:
       "'Kanban' is the Japanese word for 'visual signal.' If you work in services or technology, your work is often times invisible and intangible. A kanban board helps make your work visible so you can show it to others and keep everyone on the same page.",
     welcomeSect2:
       "RS School is free-of-charge and community-based education program conducted by The Rolling Scopes developer community since 2013. Everyone can study at RS School, regardless of age, professional employment, or place of residence. The mentors and trainers of our school are front-end and javascript developers from different companies and countries.",
-    welcomSect3:
+    welcomeSect3:
       " About me: My name is Anton.I have been studying at RSSchool for about a year. Completed courses 'JS / FRONT-END. STAGE 0', 'JS / FRONT-END'. When doing the final task on react, I used TypeScript, React Hooks, react-dom, mui UI tools. Carrying out this project alone, unfortunately, I did not have time to implement all the necessary features. But I will finish this task, since the main goal is to learn and understand",
   },
   RU: {
@@ -68,14 +73,18 @@ export const dict = {
       delProfile: "Удалить мой аккаунт",
       logIn: "Войти",
       createAcc: "Создать аккаунт",
+      home: "Домой",
     },
     label: {
       valLogin: "Логин",
       invalLogin: "Минимум 2 символа a-z, A-Z, '.' or '_'",
       valPass: "Пароль",
+      newTitle: "Введите новое название",
       invalPass: "Минимум 8 символов a-z, A-Z or '_'",
       valName: "Имя",
       invalName: "Минимум 2 символа a-z or A-Z",
+      boardTitle: "Название",
+      boardDescr: "Описание",
     },
     toasts: {
       hello: "Добро пожаловать!",
@@ -94,11 +103,12 @@ export const dict = {
     },
     signInConfirm: "Нет аккаунта?",
     signUpConfirm: "Уже зарегистрированы?",
+    modalConfirm: "Вы уверены?",
     welcomeSect1:
       "«Kanban» в переводе с японского означает «визуальный сигнал». Если вы работаете в сфере услуг или технологий - ваша работа часто невидима и неосязаема. Канбан-доска помогает сделать вашу работу видимой, чтобы вы могли показать ее другим и держать всё на одной странице.",
     welcomeSect2:
       " RS School — бесплатная общественная образовательная программа, проводимая сообществом разработчиков The Rolling Scopes с 2013 года. Учиться в RS School может каждый, независимо от возраста, профессиональной занятости и места жительства. Наставники и тренеры нашей школы — фронтенд и javascript-разработчики из разных компаний и стран.",
-    welcomSect3:
+    welcomeSect3:
       "О себе: Меня зовут Антон. Я учусь в RSSchool около года. Прошел курсы 'JS/FRONT-END. ЭТАП 0', 'JS/FRONT-END'. При выполнении последнего задания я использовал такие инструменты как: TypeScript, React Hooks, react-dom, mui UI tools. Выполняя этот проект в одиночку, я, к сожалению, не успел реализовать все необходимые функции. Но это задание я закончу, так как основная цель научиться и разобраться.",
   },
 };

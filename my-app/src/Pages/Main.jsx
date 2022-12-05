@@ -6,12 +6,14 @@ import Board from "../Components/Board/Board";
 import { GetId } from "../Utils/utils";
 import CircularProgress from "@mui/material/CircularProgress";
 import { toastError } from "../Toasts/toasts";
+import { dict } from "../Dictionary/Dict";
 
 const Main = () => {
   const boards = useSelector((state) => state.boards.boards);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoad = useSelector((state) => state.loading.value);
+  const lang = useSelector((state) => state.lang.value);
 
   const request = async () => {
     dispatch({ type: "LOADED", payload: true });
@@ -20,7 +22,7 @@ const Main = () => {
       dispatch({ type: "BOARD", payload: boards.data });
       dispatch({ type: "LOADED", payload: false });
     } else {
-      toastError("Invalid Token");
+      toastError(dict[lang].toasts.badToken);
       localStorage.clear();
       dispatch({ type: "TOKEN", payload: "" });
       dispatch({ type: "LOGIN", payload: "" });

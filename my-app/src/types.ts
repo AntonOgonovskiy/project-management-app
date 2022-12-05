@@ -86,3 +86,8 @@ export interface remove {
     };
   };
 }
+export interface lang {
+  lang: {
+    value: string;
+  };
+}

@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import "./Pages.css";
+import { lang } from "../types";
+import { dict } from "../Dictionary/Dict";
 
 const Welcome = () => {
+  const lang = useSelector((state: lang) => state.lang.value);
   return (
     <div>
       <div className="sectionWrapper">
@@ -12,20 +16,12 @@ const Welcome = () => {
           />
         </div>
         <p className="textWrapper">
-          "Kanban" is the Japanese word for "visual signal." If you work in
-          services or technology, your work is often times invisible and
-          intangible. A kanban board helps make your work visible so you can
-          show it to others and keep everyone on the same page.
+          {dict[lang as keyof typeof dict].welcomeSect1}
         </p>
       </div>
       <div className="sectionWrapper">
         <p className="textWrapper">
-          RS School is free-of-charge and community-based education program
-          conducted by The Rolling Scopes developer community since 2013.
-          Everyone can study at RS School, regardless of age, professional
-          employment, or place of residence. The mentors and trainers of our
-          school are front-end and javascript developers from different
-          companies and countries.
+          {dict[lang as keyof typeof dict].welcomeSect2}
         </p>
         <div className="imgWrapper">
           <img
@@ -46,13 +42,7 @@ const Welcome = () => {
           </a>
         </div>
         <p className="textWrapper">
-          About me: My name is Anton.I have been studying at RSSchool for about
-          a year. Completed courses "JS / FRONT-END. STAGE 0", "JS / FRONT-END".
-          When doing the final task on react, I used TypeScript, hooks,
-          react-dom, mui UI tools. Carrying out this project alone,
-          unfortunately, I did not have time to implement all the necessary
-          features. But I will finish this task, since the main goal is to learn
-          and understand
+          {dict[lang as keyof typeof dict].welcomeSect3}
         </p>
       </div>
       <div></div>
