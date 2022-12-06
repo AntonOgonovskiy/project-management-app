@@ -1,0 +1,49 @@
+.headerWrapper {
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  transition: background-color 0.3s;
+  padding: 10px;
+}
+
+.headerButtonName {
+  font-size: 1rem;
+}
+@media screen and (max-width: 1068px) {
+  .headerButtonName {
+    font-size: 0.6rem;
+  }
+}
+@media screen and (max-width: 590px) {
+  .headerButtonName {
+    font-size: 0.3rem;
+  }
+}
+.headerSticky {
+  background-color: rgb(91, 91, 91);
+}
+
+.homeLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: blue;
+  transition: linear 0.3s;
+}
+
+.headerButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.switcherWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+}

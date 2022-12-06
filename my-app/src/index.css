@@ -1,0 +1,9 @@
+body {
+  max-width: 1440px;
+  padding: 20px;
+  margin: 0 auto;
+  font-size: 10px;
+}
+.mainContainer {
+  position: relative;
+}

@@ -1,0 +1,24 @@
+.footerWrapper {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+.rssLink {
+  height: 30px;
+  transition: linear 0.3s;
+}
+.gitLink {
+  transition: linear 0.3s;
+  text-decoration: none;
+  color: black;
+}
+.gitLink:hover,
+.rssLink:hover {
+  transform: scale(1.2);
+}

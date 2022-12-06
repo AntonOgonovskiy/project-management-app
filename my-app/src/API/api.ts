@@ -1,0 +1,183 @@
+import axios from "axios";
+import { board, task, user } from "../types";
+
+const axiosClient = axios.create({
+  baseURL: "https://back-production-8e4f.up.railway.app",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
+
+export const signUp = async (data: user) => {
+  const response = await axiosClient
+    .post("/auth/signup", JSON.stringify(data))
+    .then((resp) => resp.data)
+    .catch((e) => e.response.data.statusCode);
+  return response;
+};
+
+export const signIn = async (data: user) => {
+  const response = await axiosClient
+    .post("/auth/signin", JSON.stringify(data))
+    .catch((e) => e.response.data.statusCode);
+  return response;
+};
+
+export const getUser = async (id: string) => {
+  const response = await axiosClient
+    .get(`/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
+};
+
+export const updUser = async (id: string, data: user) => {
+  const resp = await axiosClient
+    .put(`/users/${id}`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return resp;
+};
+export const deleteUser = async (id: string) => {
+  await axiosClient.delete(`/users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
+
+export const getUserBoards = async (id: string | undefined) => {
+  const response = await axiosClient
+    .get(`/boardsSet/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.message);
+  return response;
+};
+
+export const addBoard = async (data: board | undefined) => {
+  const response = await axiosClient
+    .post(`/boards`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response;
+};
+
+export const removeBoard = async (id: string | undefined) => {
+  const response = await axiosClient
+    .delete(`/boards/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response;
+};
+
+export const getBoard = async (id: string | undefined) => {
+  const response = await axiosClient
+    .get(`/boards/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response;
+};
+
+export const addColumn = async (id: string, data: { title: string }) => {
+  const response = await axiosClient
+    .post(`/boards/${id}/columns`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const getColumns = async (id: string) => {
+  const response = await axiosClient
+    .get(`/boards/${id}/columns`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const removeColumn = async (boardId: string, colId: string) => {
+  const response = await axiosClient
+    .delete(`/boards/${boardId}/columns/${colId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const updColumn = async (
+  boardId: string,
+  colId: string,
+  data: { title: string }
+) => {
+  const response = await axiosClient
+    .put(`/boards/${boardId}/columns/${colId}`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const addTask = async (boardId: string, colId: string, data: task) => {
+  const response = await axiosClient
+    .post(`/boards/${boardId}/columns/${colId}/tasks`, JSON.stringify(data), {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const getTasks = async (boardId: string, colId: string) => {
+  const response = await axiosClient
+    .get(`/boards/${boardId}/columns/${colId}/tasks`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};
+
+export const removeTasks = async (
+  boardId: string,
+  colId: string,
+  taskId: string
+) => {
+  const response = await axiosClient
+    .delete(`/boards/${boardId}/columns/${colId}/tasks/${taskId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((e) => e.response.data.statusCode);
+  return response.data;
+};

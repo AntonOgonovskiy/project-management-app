@@ -1,0 +1,34 @@
+.unvise {
+  display: none;
+}
+
+.modalWrapper {
+  position: absolute;
+  z-index: 100;
+  background-color: darkgray;
+  display: flex;
+  max-width: 1440px;
+  width: 100%;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.createBoardWrapper {
+  position: relative;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 40px;
+  border: 0.1px solid #1342fe;
+  border-radius: 5px;
+  box-shadow: 0 0 0.2rem #1342fe, 0 0 0.2rem #1342fe, 0 0 2rem #1342fe,
+    0 0 0.8rem #1342fe;
+}
+.closeModal {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
